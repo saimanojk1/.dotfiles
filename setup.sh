@@ -1,7 +1,7 @@
 #!/usr/bin/env zsh
 set -x
 brew install nvim
-brew install
+brew install tmux
 brew install fzf
 git clone https://github.com/saimanojk1/tmuxifier.git ~/.tmuxifier
 echo ./zshrc >> ~/.zshrc
