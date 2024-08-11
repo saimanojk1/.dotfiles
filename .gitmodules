@@ -1,0 +1,6 @@
+[submodule "tmuxifier/"]
+	url = https://github.com/saimanojk1/tmuxifier.git
+  branch = master
+[submodule "nvim/"]
+	url = https://github.com/saimanojk1/nvim.git
+  branch = master

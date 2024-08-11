@@ -1,0 +1,2 @@
+# Setup
+run ./setup.sh
