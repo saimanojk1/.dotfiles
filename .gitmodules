@@ -1,6 +1,8 @@
-[submodule "tmuxifier/"]
-	url = https://github.com/saimanojk1/tmuxifier.git
-  branch = master
-[submodule "nvim/"]
+[submodule "nvim-repo"]
+	path = nvim-repo
 	url = https://github.com/saimanojk1/nvim.git
-  branch = master
+	branch = master
+[submodule "tmuxifier-repo"]
+	path = tmuxifier-repo
+	url = https://github.com/saimanojk1/tmuxifier.git
+	branch = main
