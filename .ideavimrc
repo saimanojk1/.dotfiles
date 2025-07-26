@@ -1,0 +1,187 @@
+" basic stuff
+set hlsearch
+set scrolloff=999
+set ignorecase smartcase
+set showmode
+set history=1000
+set incsearch
+
+"set clipboard+=unnamed
+set visualbell
+set idearefactormode=normal
+set showcmd
+set number
+set showmode
+set ideastatusicon=gray
+
+" extensions
+set surround
+set multiple-cursors
+set highlightedyank
+set NERDTree
+set argtextobj
+unset sneak
+set quickscope
+
+" register leader
+let mapleader = " "
+
+map <leader>@ ~
+"set clipboard+=unnamed
+" After block yank and paste, move cursor to the end of operated text and don't override register
+vnoremap p "_dP`]
+nnoremap p p`]
+" Yank and paste from clipboard
+nnoremap y \"+y
+"vnoremap y :action EditorCopy<CR>
+vnoremap y \"+y
+nnoremap yy \"+yy
+nnoremap p \"+p
+nnoremap d \"+d
+vnoremap d \"+d
+
+
+"nnoremap p :action EditorPaste<CR>
+"vnoremap p :action EditorPaste<CR>
+"
+" have x (removes single character) not go into the default registry
+nnoremap x \"_x
+vnoremap x \"_x
+
+" Make X an operator that removes without placing text in the default registry
+nmap X \"_d
+nmap XX \"_dd
+vmap X \"_d
+vmap x \"_d
+" don't yank to default register when changing something
+nnoremap c \"xc
+xnoremap c \"xc
+
+
+" Center screen when jumping to next match
+nnoremap n nzz
+nnoremap N Nzz
+vnoremap n nzz
+vnoremap N Nzz
+
+" Center screen when moving up and down
+nnoremap <C-u> <C-u>zz
+nnoremap <C-o> <C-d>zz
+vnoremap <C-u> <C-u>zz
+vnoremap <C-o> <C-d>zz
+
+" clear the search buffer when hitting return
+nnoremap <leader><cr> :nohlsearch<cr>
+
+" code Refactoring
+:map <leader>rr <Action>(RenameElement)
+:map <leader>ca <Action>(Refactorings.QuickListPopupAction)
+:map <leader>sw <Action>(SurroundWith)
+:map <leader>oi <Action>(OptimizeImports)
+:map <leader>RR <Action>(Refactorings.QuickListPopupAction)
+:map <leader>ic <Action>(IntroduceConstant)
+
+" Extract method/function
+nnoremap <leader>em :action ExtractMethod<CR>
+vnoremap <leader>em :action ExtractMethod<CR>
+
+" stuff
+:map <leader>er <Action>(QuickJavaDoc)
+:map <leader>ee <Action>(ShowErrorDescription)
+:map <leader>hh <Action>(QuickImplementations)
+:map <leader>hj <Action>(ShowHoverInfo)
+
+" breakpoints
+:map <leader>bb <Action>(ToggleLineBreakpoint)
+:map <leader>bs <Action>(ViewBreakpoints)
+:map <leader>br <Action>(Debugger.RemoveAllBreakpoints)
+
+" comment out
+:map <leader>gc <Action>(CommentByLineComment)
+:map <leader>gb <Action>(CommentByBlockComment)
+
+" ace
+:map ff <Action>(AceAction)
+:map fv <Action>(AceTargetAction)
+:map fl <Action>(AceLineAction)
+
+" various functionality
+:map <leader>hu <Action>(HighlightUsagesInFile)
+:map <leader>rl <Action>(RecentLocations)
+":map gy <Action>(RecentChangedFiles)
+:map <leader>gp <Action>(LocalHistory.ShowHistory)
+:map <leader>m <Action>(ShowIntentionActions)
+:map <leader>o <Action>(FileStructurePopup)
+":map <leader>pw <Action>(SelectInProjectView)
+":map <leader>rt <Action>(RunContextGroup)
+:map <leader>df <Action>(GotoDeclaration)
+:map <leader>so <Action>(SelectAllOccurrences)
+xnoremap < <gv
+xnoremap > >gv
+
+" copy whole file
+nmap <C-a> ggVG"+y
+
+" Debugger Controls
+:map <leader>tr <Action>(Resume)           " ▶️ Resume
+:map <leader>tp <Action>(PauseProgram)     " ⏸ Pause
+:map <leader>ti <Action>(StepInto)         " 🔽 Step Into
+:map <leader>to <Action>(StepOver)         " ⏭ Step Over
+:map <leader>tu <Action>(StepOut)          " 🔼 Step Out
+
+" code navigation
+:map gk <Action>(MethodUp)
+:map gj <Action>(MethodDown)
+:map <leader>; <Action>(GotoNextError)
+:map <leader>' <Action>(GotoPreviousError)
+":map gs <Action>(JumpToLastChange)
+":map gl <Action>(JumpToNextChange)
+":map ga <Action>(VcsShowNextChangeMarker)
+":map gø <Action>(VcsShowPrevChangeMarker)
+":map gn <Action>(GotoNextElementUnderCaretUsage)
+":map gN <Action>(GotoPrevElementUnderCaretUsage)
+
+" splits
+":nmap <leader>i <Action>(PrevSplitter)
+":nmap <c-v> <Action>(SplitVertically)
+
+" built-in navigation to navigated items works better
+":nmap <c-o> <Action>(Back)
+":nmap <c-i> <Action>(Forward)
+
+" but preserve ideavim defaults
+":map g<c-o> <c-o>
+":map g<c-i> <c-i>
+
+" close stuff
+:map <leader>w <Action>(CloseAllEditorsButActive)
+
+" reactivate some IDEA shortcuts
+:map <c-n> <Action>(SearchEverywhere)
+:map <leader>gg <Action>(GotoFile)
+:map <c-b> <Action>(ShowUsages)
+:map <c-s> <Action>(SaveAll)
+:map <c-c> <Action>(GotoImplementation)
+
+" run stuff
+:map <leader>cg <Action>(ChooseRunConfiguration)
+:map <leader>dg <Action>(ChooseDebugConfiguration)
+:map <leader>1 <Action>(Run)
+:map <leader>2 <Action>(Debug)
+:map <leader>0 <Action>(Stop)
+
+" git stuff
+" Map <leader>gb to Git Blame (Annotate)
+nmap <leader>gt :action Annotate<CR>
+" Map <leader>gp to Git Preview (show diff)
+"nmap <leader>gp :action Vcs.ShowQuickDiff<CR>
+
+" other things
+:map <leader>ns <Action>(NewScratchFile)
+:map <leader>an <Action>(Annotate)
+:map <leader>tw <Action>(ActivateProjectToolWindow)
+:map <leader>jj viwp
+:map <leader>gf <Action>(ReformatCode)
+" source
+:map <leader>9 :source ~/.ideavimrc<CR>
+
